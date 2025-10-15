@@ -20,7 +20,7 @@ export function StepTwo({ nextStep, prevStep }) {
     if (!emailRegex.test(email)) newErrors.Email = "Invalid email";
     if (!phoneRegex.test(phone)) newErrors.Phone = "Invalid phone number";
     if (!passwordRegex.test(password))
-      newErrors.Password = "Password must be 6-20 characters";
+      newErrors.Password = "Password must be 8-20 characters";
     if (password !== confirmPassword)
       newErrors.ConfirmPassword = "Passwords do not match";
 
@@ -29,8 +29,12 @@ export function StepTwo({ nextStep, prevStep }) {
     if (Object.keys(newErrors).length === 0) nextStep();
   };
 
+  const hasError = Object.keys(errors).some((key) => errors[key]);
+
   return (
-    <div className="container">
+    <div
+      className={`container ${hasError ? "containerError" : "containerNormal"}`}
+    >
       <div className="container1-2">
         <div className="headers">
           <PineconeLogo />
@@ -41,10 +45,10 @@ export function StepTwo({ nextStep, prevStep }) {
         </div>
 
         <div className="stepOneInputs inter">
-          Email*
+          <label>Email*</label>
           <input
             type="email"
-            className="inputs"
+            className={`inputs ${errors.Email ? "inputError" : ""}`}
             placeholder="Email"
             value={email}
             onChange={(e) => {
@@ -52,11 +56,12 @@ export function StepTwo({ nextStep, prevStep }) {
               if (errors.Email) setErrors((prev) => ({ ...prev, Email: "" }));
             }}
           />
-          {errors.Email && <span style={{ color: "red" }}>{errors.Email}</span>}
-          Phone number*
+          {errors.Email && <span className="errorText">{errors.Email}</span>}
+
+          <label>Phone number*</label>
           <input
             type="text"
-            className="inputs"
+            className={`inputs ${errors.Phone ? "inputError" : ""}`}
             placeholder="Phone number"
             value={phone}
             onChange={(e) => {
@@ -64,11 +69,12 @@ export function StepTwo({ nextStep, prevStep }) {
               if (errors.Phone) setErrors((prev) => ({ ...prev, Phone: "" }));
             }}
           />
-          {errors.Phone && <span style={{ color: "red" }}>{errors.Phone}</span>}
-          Password*
+          {errors.Phone && <span className="errorText">{errors.Phone}</span>}
+
+          <label>Password*</label>
           <input
             type="password"
-            className="inputs"
+            className={`inputs ${errors.Password ? "inputError" : ""}`}
             placeholder="Password"
             value={password}
             onChange={(e) => {
@@ -78,12 +84,13 @@ export function StepTwo({ nextStep, prevStep }) {
             }}
           />
           {errors.Password && (
-            <span style={{ color: "red" }}>{errors.Password}</span>
+            <span className="errorText">{errors.Password}</span>
           )}
-          Confirm Password*
+
+          <label>Confirm Password*</label>
           <input
             type="password"
-            className="inputs"
+            className={`inputs ${errors.ConfirmPassword ? "inputError" : ""}`}
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => {
@@ -93,7 +100,7 @@ export function StepTwo({ nextStep, prevStep }) {
             }}
           />
           {errors.ConfirmPassword && (
-            <span style={{ color: "red" }}>{errors.ConfirmPassword}</span>
+            <span className="errorText">{errors.ConfirmPassword}</span>
           )}
         </div>
       </div>

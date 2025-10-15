@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* padding-ийг width-д тооцно */
+  box-sizing: border-box;
 }
 
 body {
@@ -14,14 +14,23 @@ body {
 }
 
 .container {
-  width: 480px; /* эцэг container-ийн width */
-  height: 655px;
+  width: 480px;
   background: rgba(255, 255, 255, 1);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   padding: 32px;
   justify-content: space-between;
+}
+
+.containerNormal {
+  min-height: 655px;
+  transition: all 0.3s ease;
+}
+
+.containerError {
+  min-height: 739px;
+  transition: all 0.3s ease;
 }
 
 .container1-2 {
@@ -34,7 +43,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%; /* эцэгтэй тааруулна */
+  width: 100%;
 }
 
 .header1 {
@@ -55,20 +64,46 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%; /* эцэгтэй тааруулна */
+  width: 100%;
 }
 
 .inputs {
-  width: 100%; /* эцэг container-ийн width дагана */
+  width: 100%;
   height: 44px;
   border-radius: 8px;
   padding: 12px;
   border: 1px solid rgba(203, 213, 225, 1);
 }
 
+.inputError {
+  border: 1px solid red !important;
+}
+
+.errorText {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+}
+
+.backButton {
+  flex: 1;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid rgba(203, 213, 225, 1);
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
 .stepOneContinueButton,
 .stepTwoContinueButton {
-  width: 100%; /* эцэгтэй тааруулна */
+  width: 100%;
   height: 44px;
   border-radius: 6px;
   background: rgba(18, 19, 22, 1);
@@ -81,24 +116,8 @@ body {
   cursor: pointer;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  width: 100%;
-}
-
-.backButton {
-  flex: 1; /* back button left талд хэмжээтэй */
-  height: 44px;
-  border-radius: 6px;
-  border: 1px solid rgba(203, 213, 225, 1);
-  background: rgba(255, 255, 255, 1);
-  cursor: pointer;
-}
-
 .stepTwoContinueButton {
-  flex: 2; /* Continue button back button-тай харьцуулж том */
+  flex: 2;
 }
 
 .continueButtonText {
@@ -106,41 +125,99 @@ body {
   font-size: 16px;
   line-height: 24px;
 }
-/* Allset */
+
+/* AllSet */
 .allSet {
   background: rgba(255, 255, 255, 1);
   min-width: 480px;
   min-height: 193px;
-  top: 182px;
-  left: 480px;
   border-radius: 8px;
   padding: 32px;
-  opacity: 1;
 }
+
 .allSetdiv {
   display: flex;
   flex-direction: column;
-  width: 416;
-  height: 129;
+  width: 416px;
+  height: 129px;
   gap: 12px;
-  opacity: 1;
 }
+
 .allSetText1 {
   font-weight: 600;
-  font-style: Semi Bold;
   font-size: 26px;
-  line-height: 100%;
-  letter-spacing: -3%;
-  vertical-align: middle;
   color: rgba(32, 33, 36, 1);
 }
+
 .allSetText2 {
   font-weight: 400;
-  font-style: Regular;
   font-size: 18px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  vertical-align: middle;
   color: rgba(142, 142, 142, 1);
 }
-/* Allset */
+.inputError {
+  border: 1px solid red !important;
+}
+
+.containerNormal {
+  min-height: 655px;
+  transition: all 0.3s ease;
+}
+
+.containerError {
+  min-height: 739px;
+  transition: all 0.3s ease;
+}
+.image-upload-container {
+  position: relative;
+  width: 416px;
+  height: 180px;
+  border: 1px dashed rgba(203, 213, 225, 1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f9fafb;
+}
+
+.image-upload-container input[type="file"] {
+  display: none;
+}
+
+.image-placeholder {
+  color: rgba(142, 142, 142, 1);
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.previewImage {
+  width: 416px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.inputError {
+  border: 1px solid red !important;
+}
+.image-upload-container {
+  width: 416px;
+  height: 180px;
+  border: 1px dashed rgba(203, 213, 225, 1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #f9fafb;
+}
+
+.previewImage {
+  width: 416px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}

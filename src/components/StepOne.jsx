@@ -21,34 +21,32 @@ export function StepOne({ nextStep }) {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      nextStep();
-    }
+    if (Object.keys(newErrors).length === 0) nextStep();
   };
 
   const validateFirstname = (value) => {
+    setFirstname(value);
     if (!nameRegex.test(value))
       setErrors((prev) => ({ ...prev, Firstname: "Invalid firstname" }));
     else setErrors((prev) => ({ ...prev, Firstname: "" }));
-    setFirstname(value);
   };
 
   const validateLastname = (value) => {
+    setLastname(value);
     if (!nameRegex.test(value))
       setErrors((prev) => ({ ...prev, Lastname: "Invalid lastname" }));
     else setErrors((prev) => ({ ...prev, Lastname: "" }));
-    setLastname(value);
   };
 
   const validateUsername = (value) => {
+    setUsername(value);
     if (!usernameRegex.test(value))
       setErrors((prev) => ({ ...prev, Username: "Invalid username" }));
     else setErrors((prev) => ({ ...prev, Username: "" }));
-    setUsername(value);
   };
 
   return (
-    <div className="container">
+    <div className="container containerNormal">
       <div className="container1-2">
         <div className="headers">
           <PineconeLogo />
@@ -59,38 +57,40 @@ export function StepOne({ nextStep }) {
         </div>
 
         <div className="stepOneInputs inter">
-          Firstname*
+          <label>Firstname*</label>
           <input
             type="text"
-            className="inputs"
+            className={`inputs ${errors.Firstname ? "inputError" : ""}`}
             placeholder="Firstname"
             value={firstname}
             onChange={(e) => validateFirstname(e.target.value)}
           />
           {errors.Firstname && (
-            <span style={{ color: "red" }}>{errors.Firstname}</span>
+            <span className="errorText">{errors.Firstname}</span>
           )}
-          Lastname*
+
+          <label>Lastname*</label>
           <input
             type="text"
-            className="inputs"
+            className={`inputs ${errors.Lastname ? "inputError" : ""}`}
             placeholder="Lastname"
             value={lastname}
             onChange={(e) => validateLastname(e.target.value)}
           />
           {errors.Lastname && (
-            <span style={{ color: "red" }}>{errors.Lastname}</span>
+            <span className="errorText">{errors.Lastname}</span>
           )}
-          Username*
+
+          <label>Username*</label>
           <input
             type="text"
-            className="inputs"
+            className={`inputs ${errors.Username ? "inputError" : ""}`}
             placeholder="Username"
             value={username}
             onChange={(e) => validateUsername(e.target.value)}
           />
           {errors.Username && (
-            <span style={{ color: "red" }}>{errors.Username}</span>
+            <span className="errorText">{errors.Username}</span>
           )}
         </div>
       </div>
