@@ -22,9 +22,9 @@ function App() {
 
   return (
     <div className="app">
-      {step === 3 && <StepOne nextStep={nextStep} />}
+      {step === 1 && <StepOne nextStep={nextStep} />}
       {step === 2 && <StepTwo nextStep={nextStep} prevStep={prevStep} />}
-      {step === 1 && (
+      {step === 3 && (
         <StepThree prevStep={prevStep} submitHandler={submitHandler} />
       )}
       {step === 4 && <AllSet />}
