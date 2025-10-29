@@ -1,7 +1,7 @@
 import "../App.css";
 import { PineconeLogo } from "../icons/PineconeLogo";
 import { ContinueIcon } from "../icons/ContinueIcon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function StepTwo({ nextStep, prevStep }) {
   const [email, setEmail] = useState("");
@@ -14,6 +14,32 @@ export function StepTwo({ nextStep, prevStep }) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{8,15}$/;
   const passwordRegex = /^.{8,20}$/;
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPhone = localStorage.getItem("phone");
+    const storedPassword = localStorage.getItem("password");
+    const storedConfirmPassword = localStorage.getItem("confirmPassword");
+
+    if (storedEmail) setEmail(storedEmail);
+    if (storedPhone) setPhone(storedPhone);
+    if (storedPassword) setPassword(storedPassword);
+    if (storedConfirmPassword) setConfirmPassword(storedConfirmPassword);
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+
+  useEffect(() => {
+    localStorage.setItem("phone", phone);
+  }, [phone]);
+
+  useEffect(() => {
+    localStorage.setItem("password", password);
+  }, [password]);
+  useEffect(() => {
+    localStorage.setItem("confirmPassword", confirmPassword);
+  }, [confirmPassword]);
 
   const handleNext = () => {
     const newErrors = {};

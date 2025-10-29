@@ -1,7 +1,7 @@
 import "../App.css";
 import { PineconeLogo } from "../icons/PineconeLogo";
 import { ContinueIcon } from "../icons/ContinueIcon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function StepOne({ nextStep }) {
   const [firstname, setFirstname] = useState("");
@@ -12,6 +12,28 @@ export function StepOne({ nextStep }) {
   const usernameRegex = /^[a-zA-Z0-9_.]{3,15}$/;
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const storedFirstname = localStorage.getItem("firstname");
+    const storedLastname = localStorage.getItem("lastname");
+    const storedUsername = localStorage.getItem("username");
+
+    if (storedFirstname) setFirstname(storedFirstname);
+    if (storedLastname) setLastname(storedLastname);
+    if (storedUsername) setUsername(storedUsername);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("firstname", firstname);
+  }, [firstname]);
+
+  useEffect(() => {
+    localStorage.setItem("lastname", lastname);
+  }, [lastname]);
+
+  useEffect(() => {
+    localStorage.setItem("username", username);
+  }, [username]);
 
   const handleNext = () => {
     const newErrors = {};
