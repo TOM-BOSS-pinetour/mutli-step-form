@@ -79,7 +79,9 @@ export function StepOne({ nextStep }) {
         </div>
 
         <div className="stepOneInputs inter">
-          <label>Firstname*</label>
+          <label>
+            First name <span className="colorRed">*</span>
+          </label>
           <input
             type="text"
             className={`inputs ${errors.Firstname ? "inputError" : ""}`}
@@ -91,7 +93,9 @@ export function StepOne({ nextStep }) {
             <span className="errorText">{errors.Firstname}</span>
           )}
 
-          <label>Lastname*</label>
+          <label>
+            Last name <span className="colorRed">*</span>
+          </label>
           <input
             type="text"
             className={`inputs ${errors.Lastname ? "inputError" : ""}`}
@@ -103,7 +107,9 @@ export function StepOne({ nextStep }) {
             <span className="errorText">{errors.Lastname}</span>
           )}
 
-          <label>Username*</label>
+          <label>
+            Username <span className="colorRed">*</span>
+          </label>
           <input
             type="text"
             className={`inputs ${errors.Username ? "inputError" : ""}`}

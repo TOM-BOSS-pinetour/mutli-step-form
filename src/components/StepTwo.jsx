@@ -71,7 +71,9 @@ export function StepTwo({ nextStep, prevStep }) {
         </div>
 
         <div className="stepOneInputs inter">
-          <label>Email*</label>
+          <label>
+            Email <span className="colorRed">*</span>
+          </label>
           <input
             type="email"
             className={`inputs ${errors.Email ? "inputError" : ""}`}
@@ -84,7 +86,9 @@ export function StepTwo({ nextStep, prevStep }) {
           />
           {errors.Email && <span className="errorText">{errors.Email}</span>}
 
-          <label>Phone number*</label>
+          <label>
+            Phone number <span className="colorRed">*</span>
+          </label>
           <input
             type="text"
             className={`inputs ${errors.Phone ? "inputError" : ""}`}
@@ -97,7 +101,9 @@ export function StepTwo({ nextStep, prevStep }) {
           />
           {errors.Phone && <span className="errorText">{errors.Phone}</span>}
 
-          <label>Password*</label>
+          <label>
+            Password <span className="colorRed">*</span>
+          </label>
           <input
             type="password"
             className={`inputs ${errors.Password ? "inputError" : ""}`}
@@ -113,7 +119,9 @@ export function StepTwo({ nextStep, prevStep }) {
             <span className="errorText">{errors.Password}</span>
           )}
 
-          <label>Confirm Password*</label>
+          <label>
+            Confirm Password <span className="colorRed">*</span>
+          </label>
           <input
             type="password"
             className={`inputs ${errors.ConfirmPassword ? "inputError" : ""}`}

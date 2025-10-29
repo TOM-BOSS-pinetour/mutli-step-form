@@ -22,10 +22,10 @@ export function StepThree({ prevStep, submitHandler }) {
       const reader = new FileReader();
       reader.onload = () => {
         setUrl(reader.result);
-        localStorage.setItem("profileImage", reader.result); 
+        localStorage.setItem("profileImage", reader.result);
         setErrors((prev) => ({ ...prev, image: "" }));
       };
-      reader.readAsDataURL(file); 
+      reader.readAsDataURL(file);
     } else {
       setUrl("");
       localStorage.removeItem("profileImage");
@@ -74,7 +74,9 @@ export function StepThree({ prevStep, submitHandler }) {
         </div>
 
         <div className="stepOneInputs inter">
-          <label>Date of birth*</label>
+          <label>
+            Date of birth <span className="colorRed">*</span>
+          </label>
           <input
             type="date"
             className={`inputs ${errors.date ? "inputError" : ""}`}
@@ -83,7 +85,9 @@ export function StepThree({ prevStep, submitHandler }) {
           />
           {errors.date && <div className="errorText">{errors.date}</div>}
 
-          <label>Profile image*</label>
+          <label>
+            Profile image <span className="colorRed">*</span>
+          </label>
           <div
             className={`image-upload-container ${
               errors.image ? "inputError" : ""
