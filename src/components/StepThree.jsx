@@ -1,28 +1,43 @@
 import "../App.css";
 import { PineconeLogo } from "../icons/PineconeLogo";
 import { ContinueIcon } from "../icons/ContinueIcon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function StepThree({ prevStep, submitHandler }) {
   const [url, setUrl] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [errors, setErrors] = useState({ date: "", image: "" });
 
+  useEffect(() => {
+    const storedDate = localStorage.getItem("dateOfBirth");
+    const storedImage = localStorage.getItem("profileImage");
+
+    if (storedDate) setDateOfBirth(storedDate);
+    if (storedImage) setUrl(storedImage);
+  }, []);
+
   const handleInputFile = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const newUrl = URL.createObjectURL(file);
-      setUrl(newUrl);
-      setErrors((prev) => ({ ...prev, image: "" }));
+      const reader = new FileReader();
+      reader.onload = () => {
+        setUrl(reader.result);
+        localStorage.setItem("profileImage", reader.result); 
+        setErrors((prev) => ({ ...prev, image: "" }));
+      };
+      reader.readAsDataURL(file); 
     } else {
       setUrl("");
+      localStorage.removeItem("profileImage");
       setErrors((prev) => ({ ...prev, image: "Image cannot be blank" }));
     }
   };
 
   const handleDateChange = (e) => {
-    setDateOfBirth(e.target.value);
-    if (e.target.value) {
+    const value = e.target.value;
+    setDateOfBirth(value);
+    localStorage.setItem("dateOfBirth", value);
+    if (value) {
       setErrors((prev) => ({ ...prev, date: "" }));
     } else {
       setErrors((prev) => ({ ...prev, date: "Please select a date." }));
